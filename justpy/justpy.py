@@ -14,6 +14,7 @@ from justpy.htmlcomponents import *
 from .chartcomponents import *
 from .gridcomponents import *
 from .quasarcomponents import *
+from .whiteliststatic import *
 
 from jpcore.justpy_app import CommunicationType, cookie_signer, template_options, handle_event, JustpyApp, \
     JustpyAjaxEndpoint, Jp_Route_Callback
@@ -50,7 +51,7 @@ if jpconfig.SSL_KEYFILE and jpconfig.SSL_CERTFILE:
 #if SESSIONS:
 #    middleware.append(Middleware(SessionMiddleware, secret_key=SECRET_KEY))
 app = JustpyApp(middleware=middleware, debug=jpconfig.DEBUG)
-app.mount(jpconfig.STATIC_ROUTE, StaticFiles(directory=jpconfig.STATIC_DIRECTORY), name=jpconfig.STATIC_NAME)
+app.mount(jpconfig.STATIC_ROUTE, WhiteListStatic(ext_list=jpconfig.EXT_LIST,directory=jpconfig.STATIC_DIRECTORY), name=jpconfig.STATIC_NAME)
 app.mount(
     "/templates", StaticFiles(directory=current_dir + "/templates"), name="templates"
 )

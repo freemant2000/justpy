@@ -75,6 +75,7 @@ class JpConfig(Config):
             jpconfig.STATIC_DIRECTORY = config("STATIC_DIRECTORY", cast=str, default=os.getcwd())
             jpconfig.STATIC_ROUTE = config("STATIC_MOUNT", cast=str, default="/static")
             jpconfig.STATIC_NAME = config("STATIC_NAME", cast=str, default="static")
+            jpconfig.EXT_LIST= config("EXT_LIST", default=["png","jpg","gif","jpeg","pdf","js","html","css","docx","doc","xlsx","xls","pptx","ppt"])
             jpconfig.FAVICON = config(
     "FAVICON", cast=str, default=""
 )  # If False gets value from https://elimintz.github.io/favicon.png

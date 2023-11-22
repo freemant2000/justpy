@@ -144,12 +144,18 @@ Vue.component('quasar_component', {
         var b = {};
         for (slot_name in this.jp_props.scoped_slots) {
             b[slot_name] = this.jp_props.scoped_slots[slot_name];
-            var vue_type = this.jp_props.vue_type;
+            if (b[slot_name].js_body){
+                scoped_slots[slot_name]=function (ps){
+                    return eval(b[slot_name].js_body)
+                }
+            }
+            else{
+            var vue_type = b[slot_name].vue_type;
             scoped_slots[slot_name] = (function (v, e) {
                 return function () {
                     return h(v, {props: {jp_props: b[e]}});
                 }
-            })(vue_type, slot_name);
+            })(vue_type, slot_name);}
         }
         description_object['scopedSlots'] = scoped_slots;
 
