@@ -1,9 +1,11 @@
 // {% raw %}
 
 
-Vue.component('html_component', {
+app1.component('html_component', {
 
-    render: function (h) {
+    props: ["jp_props"],
+
+    render() {
         if (this.jp_props.hasOwnProperty('text')) {
             var comps = [this.jp_props.text];
         } else comps = [];
@@ -47,8 +49,7 @@ Vue.component('html_component', {
         if (this.jp_props.inner_html) {
             description_object['domProps'] = {innerHTML: this.jp_props.inner_html};
         }
-
-        return h(this.jp_props.html_tag, description_object, comps);
+        return Vue.h(this.jp_props.html_tag, description_object.attrs, comps);
 
     },
     data: function () {

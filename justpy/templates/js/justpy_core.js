@@ -151,11 +151,11 @@ class JustpyCore {
 	 * setup the core functionality
 	 */
 	setup() {
-		if (this.use_websockets) {
-			this.setupWebSocket();
-		} else {
-			this.setupNoWebSocket();
-		}
+		// if (this.use_websockets) {
+		// 	this.setupWebSocket();
+		// } else {
+		// 	this.setupNoWebSocket();
+		// }
 		app1 = createApp();
 		this.registerAllEvents();
 
