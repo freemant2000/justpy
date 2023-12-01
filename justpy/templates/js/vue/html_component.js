@@ -50,7 +50,7 @@ app1.component('html_component', {
             description_object['domProps'] = {innerHTML: this.jp_props.inner_html};
         }
 
-        var props=Object.assign({},description_object.attrs,{style:description_object.style,class:description_object["class"]})
+        var props=Object.assign({style:description_object.style,class:description_object["class"]},description_object.attrs)
         return Vue.h(this.jp_props.html_tag, props, comps);
 
     },
