@@ -157,7 +157,9 @@ class JustpyCore {
 		// 	this.setupNoWebSocket();
 		// }
 		app1 = createApp();
+		register_html_component(app1);
 		this.registerAllEvents();
+		app1.mount("#components");
 
 
 	}

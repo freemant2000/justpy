@@ -13,6 +13,7 @@ function eventHandler(props, event, form_data, aux) {
         console.log(props.jp_props);
         console.log('-------------------------');
     }
+    return;
     if (!websocket_ready && use_websockets) {
         setTimeout(function(){ eventHandler(props, event, form_data, aux); }, 100);
         return;

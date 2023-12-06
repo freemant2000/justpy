@@ -42,7 +42,7 @@
   <script>
     var page_id = 0;
     var use_websockets = true;
-    var justpyComponents = [{"attrs": {"id": "a123"}, "id": "a123", "vue_type": "html_component", "show": true, "events": [], "html_tag": "div", "scoped_slots": {}, "object_props": [], "text": "test", "style": {backgroundColor:"red"}, classes:"my_font"}];
+    var justpyComponents = [{"attrs": {"id": "a123"}, "id": "a123", "vue_type": "html_component", "show": true, "events": ["click"], "html_tag": "div", "scoped_slots": {}, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font"}];
     let justpy_core=new JustpyCore(
                 this, // window
                 0, // page_id
@@ -72,12 +72,9 @@
   <script src='templates/js/vue/plotlyjp.js'></script>
   <script src='templates/js/vue/quasar_component.js'></script> -->
   <script src='../justpy/templates/js/vue/component_generator.js'></script>
-  <script>
-    justpy_core.setup();
-  </script>
   <script src='../justpy/templates/js/vue/html_component.js'></script>
   <script>
-    app1.mount("#components")
+    justpy_core.setup();
   </script>
     </body>
 </html>
