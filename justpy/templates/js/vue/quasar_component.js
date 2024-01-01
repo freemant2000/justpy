@@ -1,9 +1,12 @@
 // {% raw %}
 var storage_dict = {};
 
-Vue.component('quasar_component', {
+function register_quasar_component(app) {
+app.component('quasar_component', {
 
-    render: function (h) {
+    props: ["jp_props"],
+
+    render() {
         if (this.jp_props.hasOwnProperty('text')) {
             var comps = [this.jp_props.text];
         } else comps = [];
@@ -153,13 +156,16 @@ Vue.component('quasar_component', {
             var vue_type = b[slot_name].vue_type;
             scoped_slots[slot_name] = (function (v, e) {
                 return function () {
-                    return h(v, {props: {jp_props: b[e]}});
+                    return Vue.h(Vue.resolveComponent(v),{jp_props: b[e]});
                 }
             })(vue_type, slot_name);}
         }
-        description_object['scopedSlots'] = scoped_slots;
+        scoped_slots["default"]=function() {return comps}
 
-        return h(this.jp_props.html_tag, description_object, comps);
+        description_object['scopedSlots'] = scoped_slots;
+        
+        var props = Object.assign({style: description_object.style, class: description_object["class"]}, description_object.attrs, event_description)
+        return Vue.h(Vue.resolveComponent(this.jp_props.html_tag), props, scoped_slots);
 
     },
     data: function () {
@@ -531,5 +537,6 @@ Vue.component('quasar_component', {
 
     }
 });
+}
 
 // {% endraw %}

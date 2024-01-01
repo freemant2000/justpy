@@ -18,9 +18,11 @@
     <link rel="shortcut icon" href='https://elimintz.github.io/favicon.png'>
     <link rel="stylesheet" href="../justpy/templates/local/fontawesome/css/all.min.css"/>
     <link rel="stylesheet" href="../justpy/templates/local/animate.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/quasar@^2.14.2/dist/quasar.min.css" rel="stylesheet"
+    type="text/css">
     <script src="../justpy/templates/local/jquery.js"></script>
     <!-- <script src="templates/local/vue.js"></script>     -->
-    <link href="../justpy/templates/css/highcharts_jp.css" rel="stylesheet">
+    <!-- <link href="../justpy/templates/css/highcharts_jp.css" rel="stylesheet">
     <script src="../justpy/templates/local/highcharts.js"></script>
     <script>
     Highcharts.setOptions({
@@ -28,22 +30,23 @@
             thousandsSep: ','
         }
     });
-    </script>
-    <script src="../justpy/templates/local/ag-grid-community.js"></script>
+    </script> -->
+    <!-- <script src="../justpy/templates/local/ag-grid-community.js"></script> -->
     </head>
     <body style="" class="">
     
       <div id="components">
       </div>
-      <div id="test"></div>
+      <div id="test">test</div>
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@^2.14.2/dist/quasar.umd.min.js"></script>
     <!-- <script src=http://127.0.0.1:8000/static/components/comp_fullcalendar.js></script>
     <script src=http://127.0.0.1:8000/static/components/comp_signaturepad.js></script> -->
-      <script src='../justpy/templates/js/justpy_core.js'></script>
+    <script src='../justpy/templates/js/justpy_core.js'></script>
   <script>
     var page_id = 0;
     var use_websockets = true;
-    var justpyComponents = [{"attrs": {"id": "a123"}, "id": "a123", "vue_type": "html_component", "show": true, "events": ["click"], "html_tag": "div", "scoped_slots": {}, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font", 
+    var justpyComponents = [{"attrs": {"loading":true}, "id": "a123", "vue_type": "quasar_component", "show": true, "events": ["click"], "html_tag": "q-btn", "scoped_slots": {}, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font",
     func:function(){document.getElementById("test").textContent="show"}}];
     
     let justpy_core=new JustpyCore(
@@ -72,12 +75,12 @@
   <script src='templates/js/vue/html_component.js'></script>
   <script src='templates/js/vue/iframejp.js'></script>
   <script src='templates/js/vue/katexjp.js'></script>
-  <script src='templates/js/vue/plotlyjp.js'></script>
-  <script src='templates/js/vue/quasar_component.js'></script> -->
+  <script src='templates/js/vue/plotlyjp.js'></script> -->
   <script src='../justpy/templates/js/vue/component_generator.js'></script>
   <script src='../justpy/templates/js/vue/html_component.js'></script>
+  <script src='../justpy/templates/js/vue/quasar_component.js'></script>
   <script>
-    justpy_core.setup();
+    justpy_core.setup(true);
   </script>
     </body>
 </html>

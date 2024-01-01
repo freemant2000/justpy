@@ -53,7 +53,9 @@ def create_component_file_list():
     component_dir = os.path.join(jpconfig.STATIC_DIRECTORY, "components")
     if os.path.isdir(component_dir):
         for file in os.listdir(component_dir):
-            if fnmatch.fnmatch(file, "*.js"):
+            # [TODO]
+            # if fnmatch.fnmatch(file, "*.js"):
+            if fnmatch.fnmatch(file, "component_generator.js") or fnmatch.fnmatch(file, "html_component.js"):
                 file_list.append(f"/components/{file}")
     return file_list
 
@@ -64,9 +66,14 @@ template_dir=f"{grand_parent}/justpy/templates"
 
 lib_dir = os.path.join(template_dir, "js", jpconfig.FRONTEND_ENGINE_TYPE)
 # remove .js extension
+# [TODO]
+# jpconfig.FRONTEND_ENGINE_LIBS = [fn[:-3]
+#                         for fn in os.listdir(lib_dir)
+#                         if fnmatch.fnmatch(fn, "*.js")
+#                         ]
 jpconfig.FRONTEND_ENGINE_LIBS = [fn[:-3]
                         for fn in os.listdir(lib_dir)
-                        if fnmatch.fnmatch(fn, "*.js")
+                        if fnmatch.fnmatch(fn, "component_generator.js") or fnmatch.fnmatch(fn, "html_component.js")
                         ]
 
 TEMPLATES_DIRECTORY = JpConfig.config(

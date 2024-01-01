@@ -150,14 +150,18 @@ class JustpyCore {
 	/**
 	 * setup the core functionality
 	 */
-	setup() {
-		// if (this.use_websockets) {
-		// 	this.setupWebSocket();
-		// } else {
-		// 	this.setupNoWebSocket();
-		// }
+	setup(quasar=false) {
+		if (this.use_websockets) {
+			this.setupWebSocket();
+		} else {
+			this.setupNoWebSocket();
+		}
 		app1 = createApp();
 		register_html_component(app1);
+		if (quasar) {
+			app1.use(Quasar)
+			register_quasar_component(app1)
+		}
 		this.registerAllEvents();
 		app1.mount("#components");
 

@@ -41,7 +41,8 @@ function register_html_component(app) {
             var event_description = {};
             for (i = 0; i < this.jp_props.events.length; i++) {
                 if (!this.jp_props.events[i].includes('__'))
-                    event_description["on"+this.jp_props.events[i]] = this.eventFunction
+                    // event_description["on"+this.jp_props.events[i]] = this.eventFunction
+                    event_description["on"+this.jp_props.events[i]] = this.jp_props.func ? this.jp_props.func : this.eventFunction
             }
 
 

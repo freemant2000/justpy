@@ -20,3 +20,12 @@ class HTMLComponentTest(unittest.TestCase):
         drv.get(os.path.join(cwd,"tests","html_component_test_page.html"))
         self.assertEquals(drv.find_element(By.ID,"a123").value_of_css_property("font-size"),"36px")
         drv.close()
+
+    def test_event(self):
+        drv=SeleniumBrowsers(headless=False).getFirst()
+        cwd=os.getcwd()
+        drv.get(os.path.join(cwd,"tests","html_component_test_page.html"))
+        btn=drv.find_element(By.ID,"a123")
+        btn.click()
+        drv.find_element(By.XPATH ,"//div[text()='show']")
+        drv.close()
