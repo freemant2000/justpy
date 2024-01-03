@@ -93,7 +93,7 @@ class Context:
         """
         generate the java script setup code
         """
-        js=f"{indent}  justpy_core.setup();"
+        js=f"{indent}  justpy_core.setup(quasar=true);"
         return js
 
     def as_javascript_constructor(self,indent:str="    "):

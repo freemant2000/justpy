@@ -55,7 +55,7 @@ def create_component_file_list():
         for file in os.listdir(component_dir):
             # [TODO]
             # if fnmatch.fnmatch(file, "*.js"):
-            if fnmatch.fnmatch(file, "component_generator.js") or fnmatch.fnmatch(file, "html_component.js"):
+            if fnmatch.fnmatch(file, "component_generator.js") or fnmatch.fnmatch(file, "html_component.js") or fnmatch.fnmatch(file, "quasar_component.js"):
                 file_list.append(f"/components/{file}")
     return file_list
 
@@ -73,7 +73,7 @@ lib_dir = os.path.join(template_dir, "js", jpconfig.FRONTEND_ENGINE_TYPE)
 #                         ]
 jpconfig.FRONTEND_ENGINE_LIBS = [fn[:-3]
                         for fn in os.listdir(lib_dir)
-                        if fnmatch.fnmatch(fn, "component_generator.js") or fnmatch.fnmatch(fn, "html_component.js")
+                        if fnmatch.fnmatch(fn, "component_generator.js") or fnmatch.fnmatch(fn, "html_component.js") or fnmatch.fnmatch(fn, "quasar_component.js")
                         ]
 
 TEMPLATES_DIRECTORY = JpConfig.config(

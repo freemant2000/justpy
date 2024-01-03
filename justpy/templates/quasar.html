@@ -52,7 +52,7 @@
     {{ page_options.body_html | safe }}
     {% if not options.no_internet %}
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
         {% if options.quasar_version %}
             <script src="https://cdn.jsdelivr.net/npm/quasar@{{ options.quasar_version }}/dist/quasar.umd.min.js"></script>
         {% else %}
@@ -60,7 +60,7 @@
         {% endif %}
     {% else %}
         <script src="/templates/local/jquery.js"></script>
-        <script src="/templates/local/vue.js"></script>
+        <script src="/templates/local/vue.global.js"></script>
         <script src="/templates/local/quasar.js"></script>
     {% endif %}
     <div id="components">

@@ -19,5 +19,6 @@ class QuasarComponentTest(unittest.TestCase):
         drv=SeleniumBrowsers(headless=False).getFirst()
         cwd=os.getcwd()
         drv.get(os.path.join(cwd,"tests","quasar_component_test_page.html"))
-        WebDriverWait(drv,10).until(EC.presence_of_element_located((By.TAG_NAME ,"circle")))
+        drv.implicitly_wait(10)
+        drv.find_element(By.TAG_NAME ,"circle")
         drv.close()

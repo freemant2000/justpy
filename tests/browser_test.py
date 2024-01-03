@@ -27,7 +27,7 @@ class SeleniumBrowsers:
         self.headless = headless
         self.browsers = {}
 
-    def getFirst(self):
+    def getFirst(self) -> WebDriver:
         """
         get the first available browser
         """
