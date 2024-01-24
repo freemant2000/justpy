@@ -62,15 +62,13 @@ class Context:
         """
         generate the html lines for justpy to work 
         """
-        html=self.as_script_src("justpy_core")
-        html+=f"""{indent}<script>
+        html=f"""
 {indent}  var page_id = {self.page_id_js};
 {indent}  var use_websockets = {self.use_websockets_js};
 {indent}  var justpyComponents = {self.justpy_dict_js};
 """
         html+=self.as_javascript_constructor(indent+"  ")
-        html+=f"\n{indent}</script>\n{self.as_script_srcs(indent)}"
-        html+=f"{indent}<script>\n{self.as_javascript_setup(indent)}\n{indent}</script>\n"
+        html+=f"{indent}\n{self.as_javascript_setup(indent)}\n{indent}\n"
         return html
     
     def as_script_src(self,file_name:str, indent:str="  ", subdir=""):
@@ -93,7 +91,7 @@ class Context:
         """
         generate the java script setup code
         """
-        js=f"{indent}  justpy_core.setup(quasar=true);"
+        js=f"{indent}  justpy_core.setup(justpyComponents,true);"
         return js
 
     def as_javascript_constructor(self,indent:str="    "):

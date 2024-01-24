@@ -1,4 +1,6 @@
-function    createApp() {
+export {createApp};
+import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+function    createApp(justpyComponents) {
 //         var app1 = new Vue({
 //             el: '#components',
 //             data: {

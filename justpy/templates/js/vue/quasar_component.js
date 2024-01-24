@@ -1,7 +1,8 @@
 // {% raw %}
 var storage_dict = {};
-
-function register_quasar_component(app) {
+export {register_quasar_component}
+import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+function register_quasar_component(app,comp_dict) {
 app.component('quasar_component', {
 
     props: ["jp_props"],
@@ -36,7 +37,7 @@ app.component('quasar_component', {
             }
         }
 
-        description_object = {
+        let description_object = {
             style: this.jp_props.style,
             attrs: Object.assign({}, this.jp_props.attrs),
             domProps: {

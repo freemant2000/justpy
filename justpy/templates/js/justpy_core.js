@@ -91,6 +91,11 @@ function comp_replace(comp, comp_list) {
 /***
  * Object-Oriented Core
  */
+import {createApp} from './vue/component_generator.js';
+import {register_html_component} from './vue/html_component.js';
+import {register_quasar_component} from './vue/quasar_component.js';
+import {Quasar,QBtn} from '/templates/quasar.esm.js';
+export {JustpyCore};
 class JustpyCore {
 
 	/**
@@ -150,17 +155,17 @@ class JustpyCore {
 	/**
 	 * setup the core functionality
 	 */
-	setup(quasar=false) {
+	setup(justpyComponents,quasar=false) {
 		if (this.use_websockets) {
 			this.setupWebSocket();
 		} else {
 			this.setupNoWebSocket();
 		}
-		app1 = createApp();
+		app1 = createApp(justpyComponents);
 		register_html_component(app1);
 		if (quasar) {
-			app1.use(Quasar)
-			register_quasar_component(app1)
+			app1.use(Quasar,{components:[QBtn]})
+			register_quasar_component(app1,comp_dict)
 		}
 		this.registerAllEvents();
 		app1.mount("#components");
@@ -183,10 +188,10 @@ class JustpyCore {
 			ws_url += ':' + location.port;
 		}
 		socket = new WebSocket(ws_url);
-
+		let that=this;
 		socket.addEventListener('open', function(event) {
 			console.log('Websocket opened');
-			socket.send(JSON.stringify({ 'type': 'connect', 'page_id': page_id }));
+			socket.send(JSON.stringify({ 'type': 'connect', 'page_id': that.page_id }));
 		});
 
 		// on error reload site
@@ -304,7 +309,7 @@ class JustpyCore {
 			const e = {
 				'event_type': 'page_ready',
 				'visibility': document.visibilityState,
-				'page_id': page_id,
+				'page_id': this.page_id,
 				'websocket_id': websocket_id
 			};
 			send_to_server(e, 'page_event', false);
@@ -422,7 +427,7 @@ class JustpyCore {
 		window.addEventListener('beforeunload', function(event) {
 			let e = {
 				'event_type': 'beforeunload',
-				'page_id': page_id,
+				'page_id': this.page_id,
 			};
 			send_to_server(e);
 		});
@@ -469,7 +474,7 @@ class JustpyCore {
 			const e = {
 				'event_type': event,
 				'visibility': document.visibilityState,
-				'page_id': page_id,
+				'page_id': this.page_id,
 				'websocket_id': websocket_id
 			};
 			if (evt instanceof KeyboardEvent) {

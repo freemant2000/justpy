@@ -1,5 +1,6 @@
 // {% raw %}
-
+export {register_html_component};
+import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 function register_html_component(app) {
     app.component('html_component', {
 
@@ -20,7 +21,7 @@ function register_html_component(app) {
                 }
             }
 
-            description_object = {
+            let description_object = {
                 style: this.jp_props.style,
                 attrs: this.jp_props.attrs,
                 domProps: {
