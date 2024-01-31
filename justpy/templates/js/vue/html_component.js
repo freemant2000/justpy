@@ -1,6 +1,7 @@
 // {% raw %}
 export {register_html_component};
-import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+import * as Vue from "vue";
+import {eventHandler} from '/templates/js/event_handler.js';
 function register_html_component(app) {
     app.component('html_component', {
 
@@ -48,7 +49,7 @@ function register_html_component(app) {
 
 
             if (this.jp_props.inner_html) {
-                description_object['domProps'] = { innerHTML: this.jp_props.inner_html };
+                description_object.attrs["innerHTML"]=this.jp_props.inner_html;
             }
 
             var props = Object.assign({style: description_object.style, class: description_object["class"]}, description_object.attrs, event_description)

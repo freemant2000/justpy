@@ -5,7 +5,7 @@
 /**
  * Legacy global variables
  */
-var comp_dict = {};  // Hold components for running methods
+// var comp_dict = {};  // Hold components for running methods
 var websocket_id = '';
 var websocket_ready = false;
 var web_socket_closed = false;
@@ -94,8 +94,8 @@ function comp_replace(comp, comp_list) {
 import {createApp} from './vue/component_generator.js';
 import {register_html_component} from './vue/html_component.js';
 import {register_quasar_component} from './vue/quasar_component.js';
-import {Quasar,QBtn} from '/templates/quasar.esm.js';
-export {JustpyCore, comp_dict};
+import {Quasar,QBtn,QIcon} from '/templates/quasar.esm.js';
+export {JustpyCore,websocket_id,websocket_ready,web_socket_closed};
 class JustpyCore {
 
 	/**
@@ -164,7 +164,7 @@ class JustpyCore {
 		app1 = createApp(justpyComponents);
 		register_html_component(app1);
 		if (quasar) {
-			app1.use(Quasar,{components:[QBtn]})
+			app1.use(Quasar,{components:[QBtn,QIcon]})
 			register_quasar_component(app1)
 		}
 		this.registerAllEvents();

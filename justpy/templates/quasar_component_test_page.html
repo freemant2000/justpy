@@ -15,12 +15,16 @@
 	    !function(){"use strict";function o(){var o=window,t=document;if(!("scrollBehavior"in t.documentElement.style&&!0!==o.__forceSmoothScrollPolyfill__)){var l,e=o.HTMLElement||o.Element,r=468,i={scroll:o.scroll||o.scrollTo,scrollBy:o.scrollBy,elementScroll:e.prototype.scroll||n,scrollIntoView:e.prototype.scrollIntoView},s=o.performance&&o.performance.now?o.performance.now.bind(o.performance):Date.now,c=(l=o.navigator.userAgent,new RegExp(["MSIE ","Trident/","Edge/"].join("|")).test(l)?1:0);o.scroll=o.scrollTo=function(){void 0!==arguments[0]&&(!0!==f(arguments[0])?h.call(o,t.body,void 0!==arguments[0].left?~~arguments[0].left:o.scrollX||o.pageXOffset,void 0!==arguments[0].top?~~arguments[0].top:o.scrollY||o.pageYOffset):i.scroll.call(o,void 0!==arguments[0].left?arguments[0].left:"object"!=typeof arguments[0]?arguments[0]:o.scrollX||o.pageXOffset,void 0!==arguments[0].top?arguments[0].top:void 0!==arguments[1]?arguments[1]:o.scrollY||o.pageYOffset))},o.scrollBy=function(){void 0!==arguments[0]&&(f(arguments[0])?i.scrollBy.call(o,void 0!==arguments[0].left?arguments[0].left:"object"!=typeof arguments[0]?arguments[0]:0,void 0!==arguments[0].top?arguments[0].top:void 0!==arguments[1]?arguments[1]:0):h.call(o,t.body,~~arguments[0].left+(o.scrollX||o.pageXOffset),~~arguments[0].top+(o.scrollY||o.pageYOffset)))},e.prototype.scroll=e.prototype.scrollTo=function(){if(void 0!==arguments[0])if(!0!==f(arguments[0])){var o=arguments[0].left,t=arguments[0].top;h.call(this,this,void 0===o?this.scrollLeft:~~o,void 0===t?this.scrollTop:~~t)}else{if("number"==typeof arguments[0]&&void 0===arguments[1])throw new SyntaxError("Value could not be converted");i.elementScroll.call(this,void 0!==arguments[0].left?~~arguments[0].left:"object"!=typeof arguments[0]?~~arguments[0]:this.scrollLeft,void 0!==arguments[0].top?~~arguments[0].top:void 0!==arguments[1]?~~arguments[1]:this.scrollTop)}},e.prototype.scrollBy=function(){void 0!==arguments[0]&&(!0!==f(arguments[0])?this.scroll({left:~~arguments[0].left+this.scrollLeft,top:~~arguments[0].top+this.scrollTop,behavior:arguments[0].behavior}):i.elementScroll.call(this,void 0!==arguments[0].left?~~arguments[0].left+this.scrollLeft:~~arguments[0]+this.scrollLeft,void 0!==arguments[0].top?~~arguments[0].top+this.scrollTop:~~arguments[1]+this.scrollTop))},e.prototype.scrollIntoView=function(){if(!0!==f(arguments[0])){var l=function(o){for(;o!==t.body&&!1===(e=p(l=o,"Y")&&a(l,"Y"),r=p(l,"X")&&a(l,"X"),e||r);)o=o.parentNode||o.host;var l,e,r;return o}(this),e=l.getBoundingClientRect(),r=this.getBoundingClientRect();l!==t.body?(h.call(this,l,l.scrollLeft+r.left-e.left,l.scrollTop+r.top-e.top),"fixed"!==o.getComputedStyle(l).position&&o.scrollBy({left:e.left,top:e.top,behavior:"smooth"})):o.scrollBy({left:r.left,top:r.top,behavior:"smooth"})}else i.scrollIntoView.call(this,void 0===arguments[0]||arguments[0])}}function n(o,t){this.scrollLeft=o,this.scrollTop=t}function f(o){if(null===o||"object"!=typeof o||void 0===o.behavior||"auto"===o.behavior||"instant"===o.behavior)return!0;if("object"==typeof o&&"smooth"===o.behavior)return!1;throw new TypeError("behavior member of ScrollOptions "+o.behavior+" is not a valid value for enumeration ScrollBehavior.")}function p(o,t){return"Y"===t?o.clientHeight+c<o.scrollHeight:"X"===t?o.clientWidth+c<o.scrollWidth:void 0}function a(t,l){var e=o.getComputedStyle(t,null)["overflow"+l];return"auto"===e||"scroll"===e}function d(t){var l,e,i,c,n=(s()-t.startTime)/r;c=n=n>1?1:n,l=.5*(1-Math.cos(Math.PI*c)),e=t.startX+(t.x-t.startX)*l,i=t.startY+(t.y-t.startY)*l,t.method.call(t.scrollable,e,i),e===t.x&&i===t.y||o.requestAnimationFrame(d.bind(o,t))}function h(l,e,r){var c,f,p,a,h=s();l===t.body?(c=o,f=o.scrollX||o.pageXOffset,p=o.scrollY||o.pageYOffset,a=i.scroll):(c=l,f=l.scrollLeft,p=l.scrollTop,a=n),d({scrollable:c,method:a,startTime:h,startX:f,startY:p,x:e,y:r})}}"object"==typeof exports&&"undefined"!=typeof module?module.exports={polyfill:o}:o()}();
     </script>
     <title>JustPy</title>
-    <link rel="shortcut icon" href='https://elimintz.github.io/favicon.png'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- <link rel="shortcut icon" href='https://elimintz.github.io/favicon.png'>
     <link rel="stylesheet" href="../justpy/templates/local/fontawesome/css/all.min.css"/>
     <link rel="stylesheet" href="../justpy/templates/local/animate.css"/>
-    <script src="../justpy/templates/local/jquery.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quasar@^2.14.2/dist/quasar.min.css" rel="stylesheet"
+    type="text/css">
+    <script src="../justpy/templates/local/jquery.js"></script> -->
     <!-- <script src="templates/local/vue.js"></script>     -->
-    <link href="../justpy/templates/css/highcharts_jp.css" rel="stylesheet">
+    <!-- <link href="../justpy/templates/css/highcharts_jp.css" rel="stylesheet">
     <script src="../justpy/templates/local/highcharts.js"></script>
     <script>
     Highcharts.setOptions({
@@ -28,22 +32,34 @@
             thousandsSep: ','
         }
     });
-    </script>
-    <script src="../justpy/templates/local/ag-grid-community.js"></script>
+    </script> -->
+    <!-- <script src="../justpy/templates/local/ag-grid-community.js"></script> -->
     </head>
     <body style="" class="">
     
       <div id="components">
       </div>
-      <div id="test"></div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+      <div id="test">test</div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@^2.14.2/dist/quasar.umd.min.js"></script> -->
     <!-- <script src=http://127.0.0.1:8000/static/components/comp_fullcalendar.js></script>
     <script src=http://127.0.0.1:8000/static/components/comp_signaturepad.js></script> -->
-      <script src='../justpy/templates/js/justpy_core.js'></script>
-  <script>
+    <!-- <script src='../justpy/templates/js/justpy_core.js'></script> -->
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  <script type="module">
+    import {JustpyCore} from '/templates/js/justpy_core.js';
+    import {eventHandler} from '/templates/js/event_handler.js';
     var page_id = 0;
     var use_websockets = true;
-    var justpyComponents = [{"attrs": {"id": "a123"}, "id": "a123", "vue_type": "html_component", "show": true, "events": ["click"], "html_tag": "div", "scoped_slots": {}, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font", 
+    var justpyComponents = [{"attrs": {"id":"a123","loading":true}, "id": "a123", "vue_type": "quasar_component", "show": true, "events": ["click"], "html_tag": "q-btn", "scoped_slots": {
+      loading: {attrs:{name:"search"},vue_type:"quasar_component",html_tag:"q-icon",scoped_slots:[],events:[],object_props:[]}
+    }, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font",
     func:function(){document.getElementById("test").textContent="show"}}];
     
     let justpy_core=new JustpyCore(
@@ -60,24 +76,7 @@
                 'http://127.0.0.1:8000/static/',  // static_resources_url
                 false   // debug
             );
-  </script>
-  <script src='../justpy/templates/js/event_handler.js'></script>
-  <!-- <script src='templates/js/vue/aggrid.js'></script>
-  <script src='templates/js/vue/altairjp.js'></script>
-  <script src='templates/js/vue/bokehjp.js'></script>
-  <script src='templates/js/vue/chartjp.js'></script>
-  <script src='templates/js/vue/component_generator.js'></script>
-  <script src='templates/js/vue/deckgl.js'></script>
-  <script src='templates/js/vue/editorjp.js'></script>
-  <script src='templates/js/vue/html_component.js'></script>
-  <script src='templates/js/vue/iframejp.js'></script>
-  <script src='templates/js/vue/katexjp.js'></script>
-  <script src='templates/js/vue/plotlyjp.js'></script>
-  <script src='templates/js/vue/quasar_component.js'></script> -->
-  <script src='../justpy/templates/js/vue/component_generator.js'></script>
-  <script src='../justpy/templates/js/vue/html_component.js'></script>
-  <script>
-    justpy_core.setup();
+    justpy_core.setup(justpyComponents,true);
   </script>
     </body>
 </html>

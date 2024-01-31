@@ -3,6 +3,7 @@
  * justpy event handler
  */
 export {eventHandler};
+import { websocket_id, web_socket_closed, websocket_ready} from "./justpy_core.js";
 var files_chosen = {};
 
 function eventHandler(props, event, form_data, aux) {

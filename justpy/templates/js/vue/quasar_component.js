@@ -2,7 +2,7 @@
 var storage_dict = {};
 let comp_dict = {};
 export {register_quasar_component};
-import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+import * as Vue from "vue";
 function register_quasar_component(app) {
 app.component('quasar_component', {
 
@@ -147,7 +147,7 @@ app.component('quasar_component', {
 
         var scoped_slots = {};
         var b = {};
-        for (slot_name in this.jp_props.scoped_slots) {
+        for (let slot_name in this.jp_props.scoped_slots) {
             b[slot_name] = this.jp_props.scoped_slots[slot_name];
             if (b[slot_name].js_body){
                 scoped_slots[slot_name]=function (ps){
