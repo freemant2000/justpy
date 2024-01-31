@@ -1,8 +1,9 @@
 // {% raw %}
 var storage_dict = {};
-export {register_quasar_component}
+let comp_dict = {};
+export {register_quasar_component};
 import * as Vue from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
-function register_quasar_component(app,comp_dict) {
+function register_quasar_component(app) {
 app.component('quasar_component', {
 
     props: ["jp_props"],

@@ -95,7 +95,7 @@ import {createApp} from './vue/component_generator.js';
 import {register_html_component} from './vue/html_component.js';
 import {register_quasar_component} from './vue/quasar_component.js';
 import {Quasar,QBtn} from '/templates/quasar.esm.js';
-export {JustpyCore};
+export {JustpyCore, comp_dict};
 class JustpyCore {
 
 	/**
@@ -165,7 +165,7 @@ class JustpyCore {
 		register_html_component(app1);
 		if (quasar) {
 			app1.use(Quasar,{components:[QBtn]})
-			register_quasar_component(app1,comp_dict)
+			register_quasar_component(app1)
 		}
 		this.registerAllEvents();
 		app1.mount("#components");
