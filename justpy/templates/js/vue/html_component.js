@@ -1,7 +1,6 @@
 // {% raw %}
 export {register_html_component};
 import * as Vue from "vue";
-import {eventHandler} from '/templates/js/event_handler.js';
 function register_html_component(app) {
     app.component('html_component', {
 
@@ -146,7 +145,7 @@ function register_html_component(app) {
                                     file_element.files[i].file_content = uploader.file_content[i];
                                 }
                             }
-                            eventHandler(props, event, form_elements_list);
+                            this.jp_props.eventHandler(props, event, form_elements_list);
                             return;
                         } else {
 
@@ -155,13 +154,13 @@ function register_html_component(app) {
                     }
 
                     if (uploaders.length == 0) {
-                        eventHandler(props, event, form_elements_list);
+                        this.jp_props.eventHandler(props, event, form_elements_list);
                     } else {
                         check_readers();
                     }
 
                 } else {
-                    eventHandler(this.$props, event, false);
+                    this.jp_props.eventHandler(this.$props, event, false);
                 }
             }),
             animateFunction: (function () {

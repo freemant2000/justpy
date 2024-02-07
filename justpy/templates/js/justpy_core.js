@@ -6,14 +6,14 @@
  * Legacy global variables
  */
 // var comp_dict = {};  // Hold components for running methods
-var websocket_id = '';
-var websocket_ready = false;
-var web_socket_closed = false;
+// var websocket_id = '';
+// var websocket_ready = false;
+// var web_socket_closed = false;
 
 // the global app object
 var app1 = null; // will be initialized with a Vue component in justpy_core.setup()
 var msg = null; // declare msg - beware aggrid also does this!
-var socket = null;
+// var socket = null;
 
 // @TODO make configurable and put into object oriented part
 let reload_timeout = 2000;
@@ -95,7 +95,8 @@ import {createApp} from './vue/component_generator.js';
 import {register_html_component} from './vue/html_component.js';
 import {register_quasar_component} from './vue/quasar_component.js';
 import {Quasar,QBtn,QIcon} from '/templates/quasar.esm.js';
-export {JustpyCore,websocket_id,websocket_ready,web_socket_closed};
+import {EventHandler} from './event_handler.js';
+export {JustpyCore};
 class JustpyCore {
 
 	/**
@@ -126,6 +127,11 @@ class JustpyCore {
 		staticResourcesUrl,
 		debug) {
 		this.window = window;
+		this.websocket_id = '';
+		this.websocket_ready = false;
+		this.web_socket_closed = false;
+		this.socket = null;
+		this.eventHandler=new EventHandler(this);
 		this.page_id = page_id;
 		this.setTitle(title);
 		this.use_websockets = use_websockets;
@@ -161,6 +167,13 @@ class JustpyCore {
 		} else {
 			this.setupNoWebSocket();
 		}
+		let that = this;
+		for (let e of justpyComponents) {
+			if (!e.eventHandler) {
+				e.eventHandler=function(props, event, form_data, aux)
+				{that.eventHandler.handle(props, event, form_data, aux);};
+			}
+		}
 		app1 = createApp(justpyComponents);
 		register_html_component(app1);
 		if (quasar) {
@@ -187,26 +200,26 @@ class JustpyCore {
 		if (location.port) {
 			ws_url += ':' + location.port;
 		}
-		socket = new WebSocket(ws_url);
+		this.socket = new WebSocket(ws_url);
 		let that=this;
-		socket.addEventListener('open', function(event) {
+		this.socket.addEventListener('open', function(event) {
 			console.log('Websocket opened');
-			socket.send(JSON.stringify({ 'type': 'connect', 'page_id': that.page_id }));
+			that.socket.send(JSON.stringify({ 'type': 'connect', 'page_id': that.page_id }));
 		});
 
 		// on error reload site
-		socket.addEventListener('error', function(event) {
+		this.socket.addEventListener('error', function(event) {
 			reload_site();
 		});
 
 		// if side closed → close websocket
-		socket.addEventListener('close', function(event) {
+		this.socket.addEventListener('close', function(event) {
 			console.log('Websocket closed');
 			web_socket_closed = true;
 			reload_site()
 		});
 
-		socket.addEventListener('message', function(event) {
+		this.socket.addEventListener('message', function(event) {
 			this.handleMessageEvent(event);
 		}.bind(this));  // handover the class context to the event listener function
 	}
@@ -303,14 +316,14 @@ class JustpyCore {
 	 * @param msg
 	 */
 	handleWebsocketUpdateEvent(msg) {
-		websocket_id = msg.data;
-		websocket_ready = true;
+		this.websocket_id = msg.data;
+		this.websocket_ready = true;
 		if (this.page_ready) {
 			const e = {
 				'event_type': 'page_ready',
 				'visibility': document.visibilityState,
 				'page_id': this.page_id,
-				'websocket_id': websocket_id
+				'websocket_id': this.websocket_id
 			};
 			send_to_server(e, 'page_event', false);
 		}
@@ -335,7 +348,7 @@ class JustpyCore {
 			'event_type': 'result_ready',
 			'visibility': document.visibilityState,
 			'page_id': this.page_id,
-			'websocket_id': websocket_id,
+			'websocket_id': this.websocket_id,
 			'request_id': msg.request_id,
 			'result': js_result //JSON.stringify(js_result)
 		};
@@ -475,7 +488,7 @@ class JustpyCore {
 				'event_type': event,
 				'visibility': document.visibilityState,
 				'page_id': this.page_id,
-				'websocket_id': websocket_id
+				'websocket_id': this.websocket_id
 			};
 			if (evt instanceof KeyboardEvent) {
 				// https://developer.mozilla.org/en-US/docs/Web/Events/keydown   keyup, keypress
