@@ -94,7 +94,7 @@ function comp_replace(comp, comp_list) {
 import {createApp} from './vue/component_generator.js';
 import {register_html_component} from './vue/html_component.js';
 import {register_quasar_component} from './vue/quasar_component.js';
-import {Quasar,QBtn,QIcon} from '/templates/quasar.esm.js';
+import {Quasar,QBtn,QIcon,QBanner} from '/templates/quasar.esm.js';
 import {EventHandler} from './event_handler.js';
 export {JustpyCore};
 class JustpyCore {
@@ -170,14 +170,18 @@ class JustpyCore {
 		let that = this;
 		for (let e of justpyComponents) {
 			if (!e.eventHandler) {
-				e.eventHandler=function(props, event, form_data, aux)
-				{that.eventHandler.handle(props, event, form_data, aux);};
+				e.eventHandler=that.eventHandler.handle.bind(that.eventHandler)
+			}
+			if (e.scoped_slots!={}) {
+				for (let f in e.scoped_slots) {
+					e.scoped_slots[f].eventHandler=that.eventHandler.handle.bind(that.eventHandler)
+				}
 			}
 		}
 		app1 = createApp(justpyComponents);
 		register_html_component(app1);
 		if (quasar) {
-			app1.use(Quasar,{components:[QBtn,QIcon]})
+			app1.use(Quasar,{components:[QBtn,QIcon,QBanner]})
 			register_quasar_component(app1)
 		}
 		this.registerAllEvents();
@@ -215,7 +219,7 @@ class JustpyCore {
 		// if side closed → close websocket
 		this.socket.addEventListener('close', function(event) {
 			console.log('Websocket closed');
-			web_socket_closed = true;
+			this.web_socket_closed = true;
 			reload_site()
 		});
 

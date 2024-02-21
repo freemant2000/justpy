@@ -15,10 +15,11 @@ app.component('quasar_component', {
 
         for (var i = 0; i < this.jp_props.object_props.length; i++) {
             if (this.jp_props.object_props[i].show) {
-                comps.push(h(this.jp_props.object_props[i].vue_type, {
-                    props: {
-                        jp_props: this.jp_props.object_props[i]
-                    }
+                if (!this.jp_props.object_props[i].eventHandler) {
+                    this.jp_props.object_props[i].eventHandler=this.jp_props.eventHandler;
+                }
+                comps.push(Vue.h(Vue.resolveComponent(this.jp_props.object_props[i].vue_type), {
+                        jp_props: this.jp_props.object_props[i]                
                 }))
             }
         }
@@ -162,7 +163,8 @@ app.component('quasar_component', {
                 }
             })(vue_type, slot_name);}
         }
-        scoped_slots["default"]=function() {return comps}
+        if (comps.length) {
+            scoped_slots["default"]=function() {return comps};}
 
         description_object['scopedSlots'] = scoped_slots;
         

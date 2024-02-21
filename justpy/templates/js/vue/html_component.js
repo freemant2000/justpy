@@ -13,10 +13,8 @@ function register_html_component(app) {
 
             for (var i = 0; i < this.jp_props.object_props.length; i++) {
                 if (this.jp_props.object_props[i].show) {
-                    comps.push(h(this.jp_props.object_props[i].vue_type, {
-                        props: {
-                            jp_props: this.jp_props.object_props[i]
-                        }
+                    comps.push(Vue.h(this.jp_props.object_props[i].vue_type, {                        
+                            jp_props: this.jp_props.object_props[i]                        
                     }))
                 }
             }
