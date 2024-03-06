@@ -11,7 +11,7 @@
 // var web_socket_closed = false;
 
 // the global app object
-var app1 = null; // will be initialized with a Vue component in justpy_core.setup()
+// var app1 = null; // will be initialized with a Vue component in justpy_core.setup()
 var msg = null; // declare msg - beware aggrid also does this!
 // var socket = null;
 
@@ -130,6 +130,7 @@ class JustpyCore {
 		this.websocket_id = '';
 		this.websocket_ready = false;
 		this.web_socket_closed = false;
+		this.app1 = null;
 		this.socket = null;
 		this.eventHandler=new EventHandler(this);
 		this.page_id = page_id;
@@ -178,14 +179,14 @@ class JustpyCore {
 				}
 			}
 		}
-		app1 = createApp(justpyComponents);
-		register_html_component(app1);
+		this.app1 = createApp(justpyComponents);
+		register_html_component(this.app1);
 		if (quasar) {
-			app1.use(Quasar,{components:[QBtn,QIcon,QBanner]})
-			register_quasar_component(app1)
+			this.app1.use(Quasar,{components:[QBtn,QIcon,QBanner]})
+			register_quasar_component(this.app1)
 		}
 		this.registerAllEvents();
-		app1.mount("#components");
+		this.app1.mount("#components");
 
 
 	}
@@ -251,7 +252,7 @@ class JustpyCore {
 				break;
 			case 'component_update':
 				// update just specific component on the page
-				comp_replace(msg.data, app1.justpyComponents);
+				comp_replace(msg.data, this.app1.justpyComponents);
 				break;
 			case 'run_javascript':
 				this.handleRunJavascriptEvent(msg);
@@ -312,7 +313,7 @@ class JustpyCore {
 			}
 			document.getElementsByTagName('head')[0].appendChild(link);
 		}
-		app1.justpyComponents = msg.data;
+		this.app1.justpyComponents = msg.data;
 	}
 
 	/**
@@ -464,7 +465,7 @@ class JustpyCore {
 						'event_data': { 'event_type': 'page_update', 'page_id': this.page_id }
 					}),
 					success: function(msg) {
-						if (msg) app1.justpyComponents = msg.data;
+						if (msg) this.app1.justpyComponents = msg.data;
 					},
 					dataType: 'json'
 				});

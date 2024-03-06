@@ -54,13 +54,11 @@
   </script>
   <script type="module">
     import {JustpyCore} from '/templates/js/justpy_core.js';
-    import {eventHandler} from '/templates/js/event_handler.js';
     var page_id = 0;
     var use_websockets = true;
-    var justpyComponents = [{"attrs": {"id":"a123","loading":true}, "id": "a123", "vue_type": "quasar_component", "show": true, "events": ["click"], "html_tag": "q-btn", "scoped_slots": {
-      loading: {attrs:{name:"search"},vue_type:"quasar_component",html_tag:"q-icon",scoped_slots:[],events:[],object_props:[]}
-    }, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font",
-    func:function(){document.getElementById("test").textContent="show"}}];
+    var justpyComponents = [{"attrs": {"id":"a123","loading":true}, "id": "a123", "vue_type": "quasar_component", "show": true, "events": [], "html_tag": "q-btn", "scoped_slots": {
+      loading: {attrs:{name:"search"},vue_type:"quasar_component",html_tag:"q-icon",scoped_slots:{},events:["click"],object_props:[]}
+    }, "object_props": [], debug: true, "text": "test", "style": {backgroundColor:"red"}, classes:"my_font"}];
     
     let justpy_core=new JustpyCore(
                 this, // window
