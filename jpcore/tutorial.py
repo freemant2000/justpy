@@ -6,6 +6,7 @@ Created on 2022-09-16
 import os
 import sys
 import re
+import codecs
 from jpcore.utilities import find_files
 from jpcore.example import Example, ExampleSource
 from argparse import ArgumentParser
@@ -83,11 +84,11 @@ class Tutorial():
         self.examples={}
         self.path=path
         self.docs_dir=docs_dir
-        self.name=path.replace(docs_dir+"/","")
+        self.name=path.replace(docs_dir+os.path.sep,"")
         self.tutorial_path=self.name.replace(".md","")
         self.tutorial_url=f"https://justpy.io/{self.tutorial_path}"
         self.github_url=f"https://github.com/justpy-org/justpy/blob/master/docs/{self.name}"
-        with open(self.path, "r") as markup_file:
+        with codecs.open(self.path, "r", "UTF-8") as markup_file:
             self.markup = markup_file.read()
         self.lines=self.markup.split("\n")
         header=None

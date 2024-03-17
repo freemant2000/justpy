@@ -32,7 +32,7 @@ class JustpyDemoApp:
         self.source=self.example_source.source
         self.check_demo()
         source_file=pymodule_file
-        self.source_file=source_file.replace(self.examples_dir+"/","")
+        self.source_file=source_file.replace(self.examples_dir+os.path.sep,"")
         url=f"https://github.com/justpy-org/justpy/blob/master/examples/{self.source_file}"
         self.example_source.url=url
         self.source_link=f"""<a href="{url}" target="_blank">{self.source_file}</a>"""
@@ -64,11 +64,11 @@ class JustpyDemoApp:
                 self.wpfunc_params=func_match.group(3)
                 # jenkins could have /var/lib/jenkins/jobs/justpy/workspace/examples/charts_tutorial/pandas/women_majors2.py is not a demo
                 module_match = re.search(
-                    "(examples/.*)[.]py", self.pymodule_file
+                    "(examples.*)[.]py", self.pymodule_file
                 )
                 if module_match:
                     self.pymodule = module_match.group(1)
-                    self.pymodule = self.pymodule.replace("/", ".")
+                    self.pymodule = self.pymodule.replace(os.path.sep, ".")
                     self.is_demo = not "lambda" in self.wpfunc_name                   
                     if self.debug and self.is_demo:
                         print(f"found {self.wpfunc_name}:{self.description} in module {self.pymodule} {self.pymodule_file}")

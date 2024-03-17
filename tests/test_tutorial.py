@@ -126,3 +126,5 @@ class TestTutorial(Basetest):
             print(f"❌ {failed_checks}/{len(self.ds.demos)} examples are not in sync with the tutorial content")
         #self.assertEqual(0,failed_checks)
         self.assertTrue(failed_checks<=16)
+    
+    

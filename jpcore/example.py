@@ -5,6 +5,7 @@ Created on 17.09.2022
 '''
 import os
 import re
+import codecs
 import datetime
 from difflib import Differ
 from jpcore.utilities import find_files
@@ -53,7 +54,7 @@ class ExampleSource:
         Args:
             path(str): the path to the module file
         """
-        with open(path, "r") as source_file:
+        with codecs.open(path, "r", "UTF-8") as source_file:
             self.source = source_file.read()
         self.lines=self.source.split("\n")
         
