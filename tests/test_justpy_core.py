@@ -23,8 +23,8 @@ class TestJustpyCore(BaseAsynctest):
     ):
         await super().asyncSetUp(mode="process")
 
-    async def setUp(self):
-        await BaseAsynctest.setUp(self, port=8122, debug=True)
+    # async def setUp(self):
+    #     await BaseAsynctest.setUp(self, port=8122, debug=True)
 
     async def wp_to_test(self):
         """

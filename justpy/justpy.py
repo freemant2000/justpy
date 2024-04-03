@@ -27,7 +27,9 @@ from .routing import SetRoute
 from jpcore.utilities import run_task, create_delayed_task
 import uvicorn, logging, sys, os, traceback
 import typing
+from jpcore.f2 import f1
 
+from importlib import import_module
 #
 # globals
 #
@@ -262,8 +264,10 @@ def justpy(
     jpconfig.PORT = port
     HOST = host
     PORT = port
+    print("abc")
+    print(PORT)
     if func:
-        func_to_run = func
+        func_to_run = f1
     else:
         func_to_run = initial_func
     if startup:
