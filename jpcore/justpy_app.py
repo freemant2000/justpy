@@ -36,7 +36,7 @@ from jpcore.template import Context
 from jpcore.webpage import WebPage
 from itsdangerous import Signer
 
-from jpcore.f1 import f1
+
 # typing shorthand notations
 WebPage_or_Response = typing.Union[typing.Union[WebPage, Response], typing.Awaitable[typing.Union[WebPage, Response]]]
 Jp_Route_Callback = typing.Union[
@@ -628,7 +628,7 @@ class JustpyServer:
             kwargs = {**needed_kwargs, **kwargs}
             self.proc = Process(
                 # target=jp.justpy,
-                target=f1,
+                target="not run",
                 args=(wpfunc,),
                 kwargs=kwargs,
             )
